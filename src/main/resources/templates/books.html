@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BookShop</title>
+</head>
+<body>
+<div>
+    <h1>Add Book</h1>
+
+    <form action="#" th:action="@{/books}" method="post" th:object="${book}">
+        <label>Book Title:</label>
+        <input type="text" th:field="*{title}" /><br/>
+
+        <label>Author Name:</label>
+        <input type="text" th:field="*{authorName}" /><br/>
+
+        <label>Price:</label>
+        <input type="text" th:field="*{price}" /><br/>
+
+        <label>User:</label>
+        <label>
+            <select th:field="*{user.id}">
+                <option th:each="user : ${users}" th:value="${user.getId()}" th:text="${user.getName()}"></option>
+            </select>
+        </label>
+        <br/>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+    </form>
+
+</div>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author Name</th>
+            <th>Price</th>
+            <th>Created Date</th>
+            <th>User Name</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td> <a th:href="@{/books/{id}(id=${book.id})}" href="#"><span th:text="${book.getId()}">Id</span></a></td>
+            <td th:text="${book.getTitle()}"></td>
+            <td th:text="${book.getAuthorName()}"></td>
+            <td th:text="${book.getPrice()}"></td>
+            <td th:text="${book.getCreatedDate()}"></td>
+            <td th:text="${book.getUser().getName()}"></td>
+        </tr>
+
+         </table>
+</div>
+</body>
+</html>
